@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
 
+please take clone and install node module `npm install`
+
+Run json server for Api calls `json-server --watch db.json`
+
+for testing you need to search `news` in input search.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
