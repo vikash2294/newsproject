@@ -1,0 +1,46 @@
+<diV class="container">
+  <h2 class="text-center">News Lisner</h2>
+</diV>
+<div class="container">
+  <div class="form-row">
+    <div class="col-md-10">
+      <input type="text" class="form-control" id="lname" placeholder="Please Search text" name="lname"
+        [(ngModel)]="searchData">
+      <span class=" text-center text-danger" *ngIf="flag">you must enter a search text</span>
+    </div>
+
+    <div class="col">
+      <button type="button" class="btn btn-success" (click)="submit()">search</button>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="dataOnsubmit">
+  <h3> Result For {{dataOnsubmit}}</h3>
+</div>
+<div class="container mt-2">
+  <ng-container *ngIf="postSearchData">
+    <ng-template [ngIf]="postSearchData.length" [ngIfElse]="emptyList">
+      <div class="row" *ngFor=" let data of postSearchData | paginate: { itemsPerPage: 10, currentPage: p }">
+        <div class="col-md-4">
+          <a href="{{data.headline_url}}" target="_blank">
+            <img class="img-fluid" src="{{data.image_url}}" alt="No image Found"
+              onerror="this.src='assets/thumbnail.jpg';">
+          </a>
+        </div>
+        <div class="col-md-8">
+          <h3><a [href]="data.headline_url">{{data.headline}}</a></h3>
+          <p>{{data.descripsion}}</p>
+        </div>
+      </div>
+      <br>
+      <br>
+      <pagination-controls *ngIf="postSearchData.length" (pageChange)="p = $event" class="float-right">
+      </pagination-controls>
+    </ng-template>
+
+    <ng-template #emptyList>
+      <div class="text-center">No record Found</div>
+    </ng-template>
+  </ng-container>
+</div>
